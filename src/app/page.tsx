@@ -57,8 +57,12 @@ export default async function Home() {
 
   try {
     checkout = await getData();
-  } catch (err: any) {
-    error = err.message;
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      error = err.message;
+    } else {
+      error = "An unknown error occurred";
+    }
   }
 
   if (error || !checkout) { //Caso dê algum erro no fetch, a aplicação não terá seus elementos carregados.

@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from "react";
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 interface ModalProps {
   productId: number;
@@ -8,7 +8,7 @@ interface ModalProps {
 }
 
 dotenv.config();
-const UserToken = process.env.UserToken || "" ;
+const UserToken = process.env.UserToken || "";
 
 export default function Modal({ productId, onClose }: ModalProps) {
   const [formData, setFormData] = useState({
@@ -23,12 +23,11 @@ export default function Modal({ productId, onClose }: ModalProps) {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false); // O formulário só pode ser enviado se os itens forem preenchidos
-
-  const validateForm = () => {
+  const [isFormValid, setIsFormValid] = useState(false);
+  // O useEffect para verificar se o formulário é válido é independente
+  useEffect(() => {
     const { name, email, phone_number, street_number, street, district, city, state } = formData;
-    
-    // Aqui é feito essa checagem
+
     const isValid = (
       name.trim() !== "" &&
       email.trim() !== "" &&
@@ -39,12 +38,8 @@ export default function Modal({ productId, onClose }: ModalProps) {
       city.trim() !== "" &&
       state.trim() !== ""
     );
-    
-    setIsFormValid(isValid);
-  };
 
-  useEffect(() => {
-    validateForm();
+    setIsFormValid(isValid);
   }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +78,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50"> {/** A tela de agradecimento */}
+    <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50">
       <div className="bg-white p-6 rounded-lg w-[90vw] md:w-[400px]">
         {isSubmitted ? (
           <div className="text-center">
@@ -116,7 +111,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
                 required
-                placeholder="Seu nome"
+                placeholder="Seu e-mail"
               />
             </div>
             <div className="mb-3">
@@ -129,7 +124,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
                 required
-                placeholder="Seu nome"
+                placeholder="Seu telefone"
               />
             </div>
             <div className="mb-3">
@@ -142,7 +137,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
                 required
-                placeholder="Seu nome"
+                placeholder="Número da rua"
               />
             </div>
             <div className="mb-3">
@@ -155,7 +150,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
                 required
-                placeholder="Seu nome"
+                placeholder="Nome da rua"
               />
             </div>
             <div className="mb-3">
@@ -168,7 +163,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
                 required
-                placeholder="Seu nome"
+                placeholder="Bairro"
               />
             </div>
             <div className="mb-3">
@@ -180,7 +175,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 value={formData.city}
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
-                placeholder="Seu nome"
+                placeholder="Cidade"
               />
             </div>
             <div className="mb-3">
@@ -192,7 +187,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
                 value={formData.state}
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
-                placeholder="Seu nome"
+                placeholder="Estado"
               />
             </div>
             <div className="text-center">
