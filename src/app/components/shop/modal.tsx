@@ -8,9 +8,9 @@ interface ModalProps {
 }
 
 dotenv.config();
-const UserToken = process.env.UserToken || "";
 
 export default function Modal({ productId, onClose }: ModalProps) {
+  const UserToken = process.env.UserToken || "";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
