@@ -30,7 +30,7 @@ npm run dev
 Adicione ao arquivo .env as seguinte informações:
 
 ```bash
-UserToken="token-do-usuario"
+NEXT_PUBLIC_USER_TOKEN="token-do-usuario"
 checkoutToken="checkout-da-api"
 ```
 
