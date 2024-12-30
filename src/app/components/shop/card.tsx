@@ -39,8 +39,10 @@ export default function Card({ name, price, discount, best_choice, freight, imag
         <div className="md:w-[12vw]">
           <p className="text-base font-bold line-clamp-2 h-[48px]">{name}</p>
 
-          <p className="text-xl line-through mt-3 mb-1">{formatCurrency(price)}</p>
-
+          {discount > 0 && ( // Condicional para exibir o preço antigo somente se houver desconto
+            <p className="text-xl line-through mt-3 mb-1">{formatCurrency(price)}</p>
+          )}
+          
           <p className="text-4xl font-black">{formatCurrency(newPrice)}</p>
         </div>
       </div>

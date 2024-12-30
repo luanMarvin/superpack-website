@@ -1,16 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
-import dotenv from 'dotenv';
 
 interface ModalProps {
   productId: number;
   onClose: () => void;
 }
 
-dotenv.config();
-
 export default function Modal({ productId, onClose }: ModalProps) {
-  const UserToken = process.env.UserToken || "";
+  const userToken = process.env.NEXT_PUBLIC_USER_TOKEN || "";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,7 +55,7 @@ export default function Modal({ productId, onClose }: ModalProps) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "user-token": UserToken,
+          "user-token": userToken,
         },
         body: JSON.stringify({ 
           ...formData, 

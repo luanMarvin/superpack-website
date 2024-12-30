@@ -25,7 +25,7 @@ interface Checkout {
 }
 
 async function getData() {
-  const userToken = process.env.UserToken || "";
+  const userToken = process.env.NEXT_PUBLIC_USER_TOKEN || "";
   const checkoutToken = process.env.checkoutToken;
 
   console.log("Starting API fetch...");
